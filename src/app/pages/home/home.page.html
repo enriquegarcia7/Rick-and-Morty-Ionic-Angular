@@ -1,13 +1,61 @@
-<ion-header [translucent]="true">
+<ion-header mode="md">
   <ion-toolbar>
-    <ion-title>home</ion-title>
+    <ion-title>
+      <div class="version">Ionic v7</div>
+      <strong>Rick & Morty</strong>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">home</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content mode="ios">
+
+  <div class="glass-content">
+
+    <ion-grid>
+
+      <ion-row>
+        <ion-col size="12">
+
+          <ion-searchbar placeholder="Buscar.." [(ngModel)]="params.name" (ionInput)="searchCharacter()" [debounce]="250" >
+
+          </ion-searchbar>
+        </ion-col>
+          
+      </ion-row>
+
+      <ion-row>
+        <ion-col *ngFor="let c of characters" sizeLg="6" sizeMd="6" sizeSm="12" size="12">
+
+          <ion-card>
+
+            <<ion-grid>
+              <ion-row>
+                <ion-col class="ion-padding" sizeLg="4" sizeMd="4" sizeSm="4" size="12">
+                  <ion-avatar>
+                    <img [src]="c.image" />
+                  </ion-avatar>
+                </ion-col>
+                <ion-col class="ion-padding" sizeLg="8" sizeMd="8" sizeSm="8" size="12">
+
+                  <div class="name">{{c.name}}</div>
+                  <p>Visto por primera vez: <b> <strong>{{c.origin.name}}</strong></b></p>
+                  <p>Visto por última vez: <b> <strong>{{c.location.name}}</strong></b></p>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            
+          </ion-card>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+    <ion-infinite-scroll threshold="25%" position="bottom" (ionInfinite)="getCharacter($event)">
+      <ion-infinite-scroll-content>
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+  </div>  
+
 </ion-content>

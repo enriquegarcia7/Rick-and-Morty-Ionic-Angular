@@ -15,6 +15,6 @@ import { IntroPage } from './intro.page';
     IonicModule,
     IntroPageRoutingModule
   ],
-  declarations: [IntroPage]
+  declarations: []
 })
 export class IntroPageModule {}
