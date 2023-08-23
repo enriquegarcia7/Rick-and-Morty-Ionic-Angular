@@ -14,7 +14,7 @@
     <ion-grid>
 
       <ion-row>
-        <ion-col size="12">
+        <ion-col class="d-flex-center" size="12">
 
           <ion-searchbar placeholder="Buscar.." [(ngModel)]="params.name" (ionInput)="searchCharacter()" [debounce]="250" >
 
@@ -24,7 +24,7 @@
       </ion-row>
 
       <ion-row>
-        <ion-col *ngFor="let c of characters" sizeLg="6" sizeMd="6" sizeSm="12" size="12">
+        <ion-col routerLink="/character-detail/{{c.id}}" *ngFor="let c of characters" sizeLg="6" sizeMd="6" sizeSm="12" size="12">
 
           <ion-card>
 
