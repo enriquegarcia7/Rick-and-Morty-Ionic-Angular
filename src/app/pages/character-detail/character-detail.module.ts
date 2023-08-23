@@ -15,6 +15,6 @@ import { CharacterDetailPage } from './character-detail.page';
     IonicModule,
     CharacterDetailPageRoutingModule
   ],
-  declarations: [CharacterDetailPage]
+  declarations: []
 })
 export class CharacterDetailPageModule {}
