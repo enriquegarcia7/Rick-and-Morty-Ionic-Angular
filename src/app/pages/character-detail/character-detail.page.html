@@ -10,6 +10,14 @@
 
   <div class="glass-content ion-padding">
 
+    //animacion de cargando
+
+    <div *ngIf="!character" class="loader">
+      <ion-spinner name="crescent"></ion-spinner>
+    </div>
+
+    //informacion de personaje
+
     <div class="ion-text-center ion-padding-top" *ngIf="character">
 
       <ion-avatar>
@@ -28,6 +36,30 @@
         <ion-icon slot="start" name="location-outline"></ion-icon>
         <ion-label>Visto por última vez: <br> <strong>{{character.location.name}}</strong></ion-label>
       </ion-item>
+
+      <ion-item lines="none" class="ion-margin-top">
+        <ion-icon slot="start" name="videocam-outline"></ion-icon>
+        <ion-label>Episodios donde aparece</ion-label>
+        <ion-icon slot="end" name="chevron-down"></ion-icon>
+      </ion-item>
+
+      <ion-grid>
+        <ion-row>
+
+          <ion-col *ngFor="let e of episodes" sizeLg="8" sizeMd="6" sizeSm="6" size="12">
+
+            <ion-card>
+              <ion-card-content class="ion-text-start">
+                <strong>{{e.name}}</strong>
+                <p>{{e.episode}}</p>
+                <p>Fecha de emisión: {{e.air_date | date: 'dd/MM/YYYY'}}</p>
+              </ion-card-content>
+            </ion-card>
+
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
 
     </div>
 
