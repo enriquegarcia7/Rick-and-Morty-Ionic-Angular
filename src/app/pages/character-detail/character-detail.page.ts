@@ -16,6 +16,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 export class CharacterDetailPage implements OnInit {
   characterId: string = '';
   character = null as any;
+  episodes: any[] = []; 
 
   constructor(
     private actRoute: ActivatedRoute,
@@ -28,25 +29,35 @@ export class CharacterDetailPage implements OnInit {
   ngOnInit() {}
 
   ionViewWillEnter() {
-    this.getCharacter()
+    this.getCharacter();
   }
 
   //funcion para obtener personajes
   getCharacter() {
-
     this.rickAndMortySvc.getCharacterById(this.characterId).subscribe({
-
       next: (res: any) => {
 
-        console.log(res);
         this.character = res;
-
+        this.getEpisodes()
       },
 
-      error: (err: any) => {
-
-      }
-
+      error: (err: any) => {},
     });
+  }
+  
+//funcion para obtener arreglo de episodios
+  getEpisodes() {
+    for (let url of this.character.episode) {
+      this.rickAndMortySvc.getByUrl(url).subscribe({
+        next: (res: any) => {
+
+          console.log(res);
+          this.episodes.push(res);
+
+        },
+
+        error: (err: any) => {},
+      });
+    }
   }
 }
